@@ -6,7 +6,7 @@ const router = express.Router()
 
 router.get("/", restrict(), async (r, re, n) => {
     try {
-        r.json(await Users.find())
+        re.json(await Users.find())
     } catch(err) {
         n(err)
     }

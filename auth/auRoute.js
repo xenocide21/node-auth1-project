@@ -1,6 +1,7 @@
 const express = require('express')
 const bcrypt = require('bcryptjs')
 const Users = require('../users/uMod')
+const restrict = require("../mw/restrict")
 
 const router = express.Router()
 
@@ -29,10 +30,22 @@ router.post('/login', async (r, re, n)=>{
         if(!user || !pValid) {
             return re.status(401).json({msg:'Invalid Authentication'})
         }
+
+        r.session.user = user
         re.json({msg:`Welcome ${user.username}`})
     } catch (e) {
         n(e)
     }
+})
+
+router.get("/logout", restrict(), (r, re, n) => {
+    r.session.destroy((err)=>{
+        if(err){
+            n(err)
+        } else {
+            re.json({message: 'Logout successful'})
+        }
+    })
 })
 
 module.exports = router
