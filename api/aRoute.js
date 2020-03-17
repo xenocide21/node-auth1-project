@@ -5,13 +5,13 @@ const responseBody = `
   <h1>API Routes</h1>
 
   <h2>Register</h2>
-  <p>/api/auth/register - post</p>
+  <p>/auth/register - post</p>
 
   <h2>Login</h2>
-  <p>/api/auth/login - post</p>
+  <p>/auth/login - post</p>
 
   <h2>Users</h2>
-  <p>/api/users - get</p>
+  <p>/users - get</p>
 `
 
 api.get('/', (r, re) => {
